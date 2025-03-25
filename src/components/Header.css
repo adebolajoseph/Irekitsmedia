@@ -1,88 +1,95 @@
-/* General header styling */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  background: linear-gradient(90deg, #007BFF, #6a11cb);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  padding: 15px 20px;
+  background: #333;
+  color: white;
+  position: fixed;
+  width: 100%;
   top: 0;
+  left: 0;
   z-index: 1000;
 }
 
-/* Logo styling */
 .logo {
   display: flex;
   align-items: center;
-  color: #fff;
-  font-size: 1.1em;
-  font-weight: 600;
-  text-transform: uppercase;
+  font-size: 1.5rem;
 }
 
 .camera-icon {
   margin-right: 10px;
-  font-size: 1.8em;
-  color: #f8c102;
 }
 
-/* Brand name */
-.brand-name {
-  font-family: 'Poppins', sans-serif;
-  letter-spacing: 1px;
-  
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
 }
 
-/* Navigation styling */
-.navigation .nav-links {
-  list-style: none;
+.navigation {
   display: flex;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
   gap: 20px;
 }
 
-.nav-links li {
-  position: relative;
-}
-
-.nav-links a {
+.nav-links li a {
+  color: white;
   text-decoration: none;
-  color: #fff;
-  font-size: 1em;
-  font-weight: 500;
-  transition: color 0.3s ease;
 }
 
-.nav-links a:hover {
-  color: #f8c102;
-}
-
-/* Underline hover effect */
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #f8c102;
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* Responsive design */
+/* Mobile styles */
 @media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    padding: 20px;
+  .hamburger {
+    display: block;
   }
 
-  .navigation .nav-links {
+  .navigation {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #333;
+    display: none;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .navigation.open {
+    display: flex;
+    animation: slideDown 0.3s ease-in-out;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links li {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+
+  /* Smooth dropdown animation */
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 }
