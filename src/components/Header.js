@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom'; 
 import './Header.css';
 
 const Header = ({ contactRef }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const handleContactClick = (e) => {
-    e.preventDefault(); // Prevent default link behavior
+    e.preventDefault();
+    setMenuOpen(false); // Close menu when clicking Contact
     if (contactRef.current) {
-      contactRef.current.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the Contact section
+      contactRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -18,11 +21,18 @@ const Header = ({ contactRef }) => {
         <FontAwesomeIcon icon={faVideo} className="camera-icon" />
         <span className="brand-name">Irekits Media</span>
       </div>
-      <nav className="navigation">
+
+      {/* Hamburger Icon */}
+      <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+        <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} />
+      </div>
+
+      {/* Navigation Links */}
+      <nav className={`navigation ${menuOpen ? "open" : ""}`}>
         <ul className="nav-links">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/Services">Services</Link></li>
-          <li><Link to="/About">About</Link></li>
+          <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
+          <li><Link to="/Services" onClick={() => setMenuOpen(false)}>Services</Link></li>
+          <li><Link to="/About" onClick={() => setMenuOpen(false)}>About</Link></li>
           <li><a href="#contact" onClick={handleContactClick}>Contact</a></li>
         </ul>
       </nav>
