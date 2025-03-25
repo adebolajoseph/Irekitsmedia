@@ -35,7 +35,7 @@ const HomeSection = () => {
       </style>
 
       {/* Main Home Content */}
-      <section className="my-5">
+      <section className="my-10 pt-6">
         <div
           className="mx-auto p-8 w-11/12 max-w-3xl bg-gradient-to-r from-orange-300 via-red-300 to-blue-500 bg-[length:400%_400%] rounded-lg text-white text-center shadow-lg animate-[colorCycle_10s_infinite]"
         >
